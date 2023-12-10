@@ -4,7 +4,7 @@ info:
   description: "NEX API"
   version: "2023-10-04T20:23:43Z"
   license:
-    name: nex-api-test
+    name: nex-api-test-00
 paths:
   /notifications:
     get:
