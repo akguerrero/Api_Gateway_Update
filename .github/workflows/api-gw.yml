@@ -12,7 +12,7 @@ env:
 
 jobs:
   Copia_swagger:
-  runs-on: macos-latest
+    runs-on: macos-latest
     steps:
     - name: Copiando fichero yaml
       uses: actions/checkout@v2
