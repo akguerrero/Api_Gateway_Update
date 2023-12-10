@@ -1,0 +1,39 @@
+name: Desplegando yaml APIGW
+on:
+  push:
+    branches:
+     - main
+    paths:
+      - 'api.yml'
+
+env:
+  ID_API: yhvtgvwqt6
+  ENVIRONMENT: dev
+  aws_account_id: 871340136996
+
+jobs:
+  Copia_swagger:
+    steps:
+    - name: Copiando fichero yaml
+      uses: actions/checkout@v2
+
+  Despliegue_apigw_DEV:
+    needs: Copia_swagger
+    runs-on: self-hosted
+    if: contains(github.event.head_commit.message, 'api-update')
+    steps:
+    - name: Configurando credenciales para AWS
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_CAPP_DEV }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_CAPP_DEV }}
+        aws-region: ${{ secrets.AWS_REGION }}        
+        
+    - name: Modificando yaml para DEV
+      run: |
+        sed -i 's/ENVIRONMENT/dev/g; s/ID_API/${ID_API}/g; s/AWSACCOUNT/566761670545/g' api.yml
+
+    - name: Aplicando yaml DEV
+      run: |
+        aws apigateway put-rest-api --rest-api-id ${ID_API} --mode overwrite --body 'fileb://api.yml'
+        aws apigateway create-deployment --rest-api-id ${ID_API} --region us-east-1  --stage-name dev --stage-description 'Development Stage' --description 'Deployment to the dev stage'

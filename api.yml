@@ -1,0 +1,96 @@
+openapi: "3.0.1"
+info:
+  title: "nex2-api"
+  description: "NEX API"
+  version: "2023-10-04T20:23:43Z"
+  license:
+    name: nex-api-test
+paths:
+  /notifications:
+    get:
+      tags:
+        - notifications
+      summary: 15.	Obtener Notificaciones
+      description: Obtiene un listado con las últimas N notificaciones. Las notificaciones deben tener un flag para indicar si están leídas.
+      parameters:
+        - name: AuthorizationToken
+          in: header
+          required: true
+          description: Varchar
+          example: 
+          schema:
+            type: string
+        - name: page
+          in: query
+          required: true
+          description: 
+          example: 
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: true
+          description: 
+          example: 
+          schema:
+            type: integer            
+        - name: isRead
+          in: query
+          required: true
+          description: 
+          example: TRUE/FALSE 
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "404":
+          description: ResourceNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "405":
+          description: Method not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        "503":
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+components:
+  schemas:
+    Empty:
+      title: "Empty Schema"
+      type: "object"
+    ApiError:
+      type: object
+      description: This object contains information associated to the error.
+      properties:
+        title:
+          type: string
+          description: the error title
+        status:
+          type: integer
+          description: Status error
+          format: int32
+        detail:
+          type: string
+          description: Error detail
+        instance:
+          type: string
+          description: Endpoint
