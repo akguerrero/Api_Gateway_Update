@@ -8,7 +8,6 @@ on:
 
 env:
   ID_API: yhvtgvwqt6
-  ENVIRONMENT: dev
   aws_account_id: 871340136996
 
 jobs:
@@ -25,13 +24,13 @@ jobs:
     - name: Configurando credenciales para AWS
       uses: aws-actions/configure-aws-credentials@v2
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_CAPP_DEV }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_CAPP_DEV }}
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}        
         
     - name: Modificando yaml para DEV
       run: |
-        sed -i 's/ENVIRONMENT/dev/g; s/ID_API/${ID_API}/g; s/AWSACCOUNT/566761670545/g' api.yml
+        sed -i 's/ID_API/${ID_API}/g; s/AWSACCOUNT/566761670545/g' api.yml
 
     - name: Aplicando yaml DEV
       run: |
