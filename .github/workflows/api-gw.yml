@@ -28,10 +28,6 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}        
-        
-    - name: Modificando yaml para DEV
-      run: |
-        sed -i 's/ID_API/${ID_API}/g; s/AWSACCOUNT/566761670545/g' api.yml
 
     - name: Aplicando yaml DEV
       run: |
