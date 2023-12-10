@@ -12,13 +12,14 @@ env:
 
 jobs:
   Copia_swagger:
+  runs-on: macos-latest
     steps:
     - name: Copiando fichero yaml
       uses: actions/checkout@v2
 
   Despliegue_apigw_DEV:
     needs: Copia_swagger
-    runs-on: self-hosted
+    runs-on: macos-latest
     if: contains(github.event.head_commit.message, 'api-update')
     steps:
     - name: Configurando credenciales para AWS
