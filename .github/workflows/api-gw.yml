@@ -8,13 +8,13 @@ on:
   workflow_dispatch:
 
 env:
-  ID_API: m2qo75lcye
+  ID_API: hr2kalzh6h
   aws_account_id: 871340136996
 
 jobs:
-  Despliegue_apigw_DEV:
+  Despliegue_Api:
     runs-on: ubuntu-latest
-    #if: contains(github.event.head_commit.message, 'api-update')
+    if: contains(github.event.head_commit.message, 'api-update')
     steps:
     - name: Copiando fichero yaml
       uses: actions/checkout@v2
@@ -24,8 +24,6 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}        
-    - name: list
-      run: ls -la
     - name: Aplicando yaml DEV
       run: |
         ls
