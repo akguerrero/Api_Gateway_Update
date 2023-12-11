@@ -1,10 +1,10 @@
 openapi: "3.0.1"
 info:
-  title: "nex2-api"
+  title: "nex-api"
   description: "NEX API"
   version: "2023-10-04T20:23:43Z"
   license:
-    name: nex-api-test-00
+    name: nex-api-test
 paths:
   /notifications:
     get:
