@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  ID_API: yhvtgvwqt6
+  ID_API: m2qo75lcye
   aws_account_id: 871340136996
 
 jobs:
