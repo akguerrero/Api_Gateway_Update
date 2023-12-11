@@ -72,6 +72,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiError'
+      x-amazon-apigateway-integration:
+        httpMethod: "GET"
+        uri: "https://google.com"
+        responses:
+          default:
+            statusCode: "200"
+        passthroughBehavior: "when_no_match"
+        type: "http"
 components:
   schemas:
     Empty:
