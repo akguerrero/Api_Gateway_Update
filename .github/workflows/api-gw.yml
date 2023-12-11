@@ -12,17 +12,13 @@ env:
   aws_account_id: 871340136996
 
 jobs:
-  Copia_swagger:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Copiando fichero yaml
-      uses: actions/checkout@v2
-
   Despliegue_apigw_DEV:
     needs: Copia_swagger
     runs-on: ubuntu-latest
     #if: contains(github.event.head_commit.message, 'api-update')
     steps:
+    - name: Copiando fichero yaml
+      uses: actions/checkout@v2
     - name: Configurando credenciales para AWS
       uses: aws-actions/configure-aws-credentials@v2
       with:
