@@ -13,7 +13,6 @@ env:
 
 jobs:
   Despliegue_apigw_DEV:
-    needs: Copia_swagger
     runs-on: ubuntu-latest
     #if: contains(github.event.head_commit.message, 'api-update')
     steps:
