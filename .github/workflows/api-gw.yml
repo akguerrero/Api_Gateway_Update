@@ -32,5 +32,5 @@ jobs:
 
     - name: Aplicando yaml DEV
       run: |
-        aws apigateway put-rest-api --rest-api-id ${ID_API} --mode overwrite --body 'fileb://api.yml'
+        aws apigateway put-rest-api --rest-api-id ${ID_API} --mode overwrite --body 'file://./api.yml'
         aws apigateway create-deployment --rest-api-id ${ID_API} --region us-east-1  --stage-name dev --stage-description 'Development Stage' --description 'Deployment to the dev stage'
